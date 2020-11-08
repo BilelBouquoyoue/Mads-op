@@ -43,7 +43,7 @@ def genererCalcul():
         resultat = resultat - allChiffre[1]
     elif operation[0] == '*':
         resultat = resultat * allChiffre[1]
-
+    print(operation[0])
     #operation avec le 3eme chiffre
     shuffle(operation)
     if operation[0] == '/':
