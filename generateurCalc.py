@@ -1,7 +1,6 @@
 from random import *
 
 allChiffre = []
-ordre = [0, 1, 2, 3]
 operation = ['-', '+', '*', '/']
 operationDivBug = ['-', '+', '*']
 OperationUser = ['-', '+', '*']
@@ -17,17 +16,12 @@ def genererLesChiffres():
     allChiffre.append(chiffre3)
     allChiffre.append(chiffre4)
 
-def genererOrdre():
-    shuffle(ordre)
-
-
 def genererOperations():
     shuffle(operation)
 
 def genererCalcul():
     genererLesChiffres()
     genererOperations()
-    genererOrdre()
     resultat = allChiffre[0]
 
     #Operation entre les 2 premiers chiffres
@@ -104,14 +98,17 @@ def affichageConsole():
     print('Insert ton 1er chiffre')
     ChiffreUser[0] = input()
     while ChiffreUser[0].isdigit() == False:
-        print('Insert ton 1er chiffre')
+        print('Insert ton 1er chiffre. Et pas autre chose!')
         ChiffreUser[0] = input()
     print('Insert ta 1ere opération')
     OperationUser[0] = input()
+    while OperationUser[0] != '/' or OperationUser[0] != '+' or OperationUser[0] != '-' or OperationUser[0] != '*':
+        print('Insert ta 1ere opération')
+        OperationUser[0] = input()
     print('Insert ton 2eme chiffre')
     ChiffreUser[1] = input()
     while ChiffreUser[1].isdigit() == False:
-        print('Insert ton 1er chiffre')
+        print('Insert ton 1er chiffre (et pas des lettres!')
         ChiffreUser[1] = input()
     print('Insert ta 2eme opération')
     OperationUser[1] = input()
