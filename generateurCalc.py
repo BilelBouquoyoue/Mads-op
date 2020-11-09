@@ -236,6 +236,7 @@ def calculComplet():
         affichageConsole()
         calculerUser()
         verifEgalité()
+    print(f'Vous avez perdu! Il ne vous reste plus de vie. Votre score est de : {score[0]}')
 
 
 calculComplet()
