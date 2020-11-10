@@ -179,7 +179,7 @@ def affichageConsole():
     print(f'Le résultat : {resultatAlgo[0]}')
     print('Insert ton 1er chiffre')
     ChiffreUser[0] = input()
-    while ChiffreUser[0].isdigit() == False:
+    while not int(ChiffreUser[0]) == tabAffichage[0] and not int(ChiffreUser[0]) == tabAffichage[1] and not int(ChiffreUser[0]) == tabAffichage[2] and not int(ChiffreUser[0]) == tabAffichage[3]:
         print('Insert ton 1er chiffre. Et pas autre chose!')
         ChiffreUser[0] = input()
     print('Insert ta 1ere opération')
@@ -189,7 +189,7 @@ def affichageConsole():
         OperationUser[0] = input()
     print('Insert ton 2eme chiffre')
     ChiffreUser[1] = input()
-    while ChiffreUser[1].isdigit() == False:
+    while not int(ChiffreUser[1]) == tabAffichage[0] and not int(ChiffreUser[1]) == tabAffichage[1] and not int(ChiffreUser[1]) == tabAffichage[2] and not int(ChiffreUser[1]) == tabAffichage[3]:
         print('Insert ton 2eme chiffre (et pas des lettres!)')
         ChiffreUser[1] = input()
     print('Insert ta 2eme opération')
@@ -199,7 +199,7 @@ def affichageConsole():
         OperationUser[1] = input()
     print('Insert ton 3eme chiffre')
     ChiffreUser[2] = input()
-    while ChiffreUser[2].isdigit() == False:
+    while not int(ChiffreUser[2]) == tabAffichage[0] and not int(ChiffreUser[2]) == tabAffichage[1] and not int(ChiffreUser[2]) == tabAffichage[2] and not int(ChiffreUser[2]) == tabAffichage[3]:
         print('Insert ton 1er chiffre')
         ChiffreUser[2] = input()
     print('Insert ta 3eme opération')
@@ -209,8 +209,8 @@ def affichageConsole():
         OperationUser[2] = input()
     print('Insert ton 4eme chiffre')
     ChiffreUser[3] = input()
-    while ChiffreUser[3].isdigit() == False:
-        print('Insert ton 1er chiffre')
+    while not int(ChiffreUser[3]) == tabAffichage[0] and not int(ChiffreUser[3]) == tabAffichage[1] and not int(ChiffreUser[3]) == tabAffichage[2] and not int(ChiffreUser[3]) == tabAffichage[3]:
+        print('Insert ton chiffre du tableau et pas autre chose')
         ChiffreUser[3] = input()
     print(ChiffreUser)
     print(OperationUser)
