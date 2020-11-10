@@ -184,9 +184,9 @@ def affichageConsole():
         ChiffreUser[0] = input()
     print('Insert ta 1ere opération')
     OperationUser[0] = input()
-    """while OperationUser[0] != '/' or OperationUser[0] != '+' or OperationUser[0] != '-' or OperationUser[0] != '*':
-        print('Insert ta 1ere opération')
-        OperationUser[0] = input()"""
+    while not OperationUser[0] == '/' and not OperationUser[0] == '+' and not OperationUser[0] == '-' and not OperationUser[0] == '*':
+        print('Insert ta 1ère opération')
+        OperationUser[0] = input()
     print('Insert ton 2eme chiffre')
     ChiffreUser[1] = input()
     while ChiffreUser[1].isdigit() == False:
@@ -194,6 +194,9 @@ def affichageConsole():
         ChiffreUser[1] = input()
     print('Insert ta 2eme opération')
     OperationUser[1] = input()
+    while not OperationUser[1] == '/' and not OperationUser[1] == '+' and not OperationUser[1] == '-' and not OperationUser[1] == '*':
+        print('Insert ta 2ème opération')
+        OperationUser[1] = input()
     print('Insert ton 3eme chiffre')
     ChiffreUser[2] = input()
     while ChiffreUser[2].isdigit() == False:
@@ -201,6 +204,9 @@ def affichageConsole():
         ChiffreUser[2] = input()
     print('Insert ta 3eme opération')
     OperationUser[2] = input()
+    while not OperationUser[2] == '/' and not OperationUser[2] == '+' and not OperationUser[2] == '-' and not OperationUser[2] == '*':
+        print('Insert ta 3ème opération')
+        OperationUser[2] = input()
     print('Insert ton 4eme chiffre')
     ChiffreUser[3] = input()
     while ChiffreUser[3].isdigit() == False:
