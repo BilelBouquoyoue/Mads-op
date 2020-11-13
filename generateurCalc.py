@@ -173,6 +173,7 @@ def affichageConsole():
         del resultatAlgo[0]
     resultatAlgo.append(genererCalcul())
     tabAffichage = allChiffre
+    tabCopy = tabAffichage[:]
     shuffle(tabAffichage)
     print(f'Quel est le dévellopement pour trouver le résultat avec ces 4 chiffres ? (Chaque chiffre = 1 seule utilisation)')
     print(f'Les chiffres : {tabAffichage[0]}, {tabAffichage[1]}, {tabAffichage[2]}, {tabAffichage[3]}')
@@ -182,36 +183,62 @@ def affichageConsole():
     while not int(ChiffreUser[0]) == tabAffichage[0] and not int(ChiffreUser[0]) == tabAffichage[1] and not int(ChiffreUser[0]) == tabAffichage[2] and not int(ChiffreUser[0]) == tabAffichage[3]:
         print('Insert ton 1er chiffre. Et pas autre chose!')
         ChiffreUser[0] = input()
+
+    try:
+        tabCopy.remove(int(ChiffreUser[0]))
+    except ValueError:  # If ChiffreUser[0] is not in tabCopy
+        print(ChiffreUser[0], "is not in the list of number")
+        print(tabCopy)
+
+    shuffle(tabCopy)
     print('Insert ta 1ere opération')
     OperationUser[0] = input()
     while not OperationUser[0] == '/' and not OperationUser[0] == '+' and not OperationUser[0] == '-' and not OperationUser[0] == '*':
         print('Insert ta 1ère opération')
         OperationUser[0] = input()
+
+    print(f'Les chiffres restants: {tabCopy[0]}, {tabCopy[1]}, {tabCopy[2]}')
     print('Insert ton 2eme chiffre')
     ChiffreUser[1] = input()
-    while not int(ChiffreUser[1]) == tabAffichage[0] and not int(ChiffreUser[1]) == tabAffichage[1] and not int(ChiffreUser[1]) == tabAffichage[2] and not int(ChiffreUser[1]) == tabAffichage[3]:
+    while not int(ChiffreUser[1]) == tabCopy[0] and not int(ChiffreUser[1]) == tabCopy[1] and not int(ChiffreUser[1]) == tabCopy[2] :
         print('Insert ton 2eme chiffre (et pas des lettres!)')
         ChiffreUser[1] = input()
+
+    try:
+        tabCopy.remove(int(ChiffreUser[1]))
+    except ValueError:  # If ChiffreUser[0] is not in tabCopy
+        print(ChiffreUser[1], "is not in the list of number")
+        print(tabCopy)
+
+    shuffle(tabCopy)
     print('Insert ta 2eme opération')
     OperationUser[1] = input()
     while not OperationUser[1] == '/' and not OperationUser[1] == '+' and not OperationUser[1] == '-' and not OperationUser[1] == '*':
         print('Insert ta 2ème opération')
         OperationUser[1] = input()
+
+    print(f'Les chiffres restants: {tabCopy[0]}, {tabCopy[1]}')
     print('Insert ton 3eme chiffre')
     ChiffreUser[2] = input()
-    while not int(ChiffreUser[2]) == tabAffichage[0] and not int(ChiffreUser[2]) == tabAffichage[1] and not int(ChiffreUser[2]) == tabAffichage[2] and not int(ChiffreUser[2]) == tabAffichage[3]:
-        print('Insert ton 1er chiffre')
+    while not int(ChiffreUser[2]) == tabCopy[0] and not int(ChiffreUser[2]) == tabCopy[1]:
+        print('Insert ton chiffre')
         ChiffreUser[2] = input()
+
+    try:
+        tabCopy.remove(int(ChiffreUser[2]))
+    except ValueError:  # If ChiffreUser[0] is not in tabCopy
+        print(ChiffreUser[2], "is not in the list of number")
+        print(tabCopy)
+
+    shuffle(tabCopy)
     print('Insert ta 3eme opération')
     OperationUser[2] = input()
     while not OperationUser[2] == '/' and not OperationUser[2] == '+' and not OperationUser[2] == '-' and not OperationUser[2] == '*':
         print('Insert ta 3ème opération')
         OperationUser[2] = input()
-    print('Insert ton 4eme chiffre')
-    ChiffreUser[3] = input()
-    while not int(ChiffreUser[3]) == tabAffichage[0] and not int(ChiffreUser[3]) == tabAffichage[1] and not int(ChiffreUser[3]) == tabAffichage[2] and not int(ChiffreUser[3]) == tabAffichage[3]:
-        print('Insert ton chiffre du tableau et pas autre chose')
-        ChiffreUser[3] = input()
+
+    print(f'Ton 4eme chiffre utilisé est le {tabCopy[0]}')
+    ChiffreUser[3] = tabCopy[0]
     print(ChiffreUser)
     print(OperationUser)
 
