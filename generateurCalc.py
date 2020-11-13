@@ -10,6 +10,9 @@ resultatUser = []
 vie = [0]
 score = [0]
 
+
+
+
 def genererLesChiffres():
     chiffre1 = randint(1, 10)
     chiffre2 = randint(1, 10)
@@ -74,6 +77,7 @@ def calculerUser():
     elif OperationUser[1] == '*':
         resultat = resultat * ChiffreUser[2]
 
+    puissance = 8
     #Operation avec le 4eme chiffre
     shuffle(operation)
     if OperationUser[2] == '/':
