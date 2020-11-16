@@ -10,7 +10,6 @@ resultatUser = []
 vie = [0]
 score = [0]
 
-
 def genererLesChiffres():
     chiffre1 = randint(1, 10)
     chiffre2 = randint(1, 10)
@@ -179,8 +178,7 @@ def affichageConsole():
     print(f'Le résultat : {resultatAlgo[0]}')
     print('Insert ton 1er chiffre')
     ChiffreUser[0] = input()
-    while not int(ChiffreUser[0]) == tabAffichage[0] and not int(ChiffreUser[0]) == tabAffichage[1] and not int(
-            ChiffreUser[0]) == tabAffichage[2] and not int(ChiffreUser[0]) == tabAffichage[3]:
+    while not ChiffreUser[0] == str(tabAffichage[0]) and not ChiffreUser[0] == str(tabAffichage[1]) and not ChiffreUser[0] == str(tabAffichage[2]) and not ChiffreUser[0] == str(tabAffichage[3]):
         print('Insert ton 1er chiffre. Et pas autre chose!')
         ChiffreUser[0] = input()
 
@@ -201,8 +199,8 @@ def affichageConsole():
     print(f'Les chiffres restants: {tabCopy[0]}, {tabCopy[1]}, {tabCopy[2]}')
     print('Insert ton 2eme chiffre')
     ChiffreUser[1] = input()
-    while not int(ChiffreUser[1]) == tabCopy[0] and not int(ChiffreUser[1]) == tabCopy[1] and not int(ChiffreUser[1]) == \
-                                                                                                  tabCopy[2]:
+    while not ChiffreUser[1] == str(tabCopy[0]) and not ChiffreUser[1] == str(tabCopy[1]) and not ChiffreUser[1] == \
+                                                                                                  str(tabCopy[2]):
         print('Insert ton 2eme chiffre (et pas des lettres!)')
         ChiffreUser[1] = input()
 
@@ -223,7 +221,7 @@ def affichageConsole():
     print(f'Les chiffres restants: {tabCopy[0]}, {tabCopy[1]}')
     print('Insert ton 3eme chiffre')
     ChiffreUser[2] = input()
-    while not int(ChiffreUser[2]) == tabCopy[0] and not int(ChiffreUser[2]) == tabCopy[1]:
+    while not ChiffreUser[2] == str(tabCopy[0]) and not ChiffreUser[2] == str(tabCopy[1]):
         print('Insert ton chiffre')
         ChiffreUser[2] = input()
 
