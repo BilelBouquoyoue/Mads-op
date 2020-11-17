@@ -71,8 +71,8 @@ class Composants:
         print(f'Le résultat : {resultA}')
         print('Insert ton 1er chiffre')
         self.chiffreUser[0] = input()
-        while not int(self.chiffreUser[0]) == tabAffichage[0] and not int(self.chiffreUser[0]) == tabAffichage[1] and not int(
-                self.chiffreUser[0]) == tabAffichage[2] and not int(self.chiffreUser[0]) == tabAffichage[3]:
+        while not self.chiffreUser[0] == str(tabAffichage[0]) and not self.chiffreUser[0] == str(tabAffichage[1]) \
+                and not self.chiffreUser[0] == str(tabAffichage[2]) and not self.chiffreUser[0] == str(tabAffichage[3]):
             print('Insert ton 1er chiffre. Et pas autre chose!')
             self.chiffreUser[0] = input()
 
@@ -93,8 +93,7 @@ class Composants:
         print(f'Les chiffres restants: {tabCopy[0]}, {tabCopy[1]}, {tabCopy[2]}')
         print('Insert ton 2eme chiffre')
         self.chiffreUser[1] = input()
-        while not int(self.chiffreUser[1]) == tabCopy[0] and not int(self.chiffreUser[1]) == tabCopy[1] and not int(
-                self.chiffreUser[1]) == tabCopy[2]:
+        while not self.chiffreUser[1] == str(tabCopy[0]) and not self.chiffreUser[1] == str(tabCopy[1]) and not self.chiffreUser[1] == str(tabCopy[2]):
 
             print('Insert ton 2eme chiffre (et pas des lettres!)')
             self.chiffreUser[1] = input()
@@ -116,7 +115,7 @@ class Composants:
         print(f'Les chiffres restants: {tabCopy[0]}, {tabCopy[1]}')
         print('Insert ton 3eme chiffre')
         self.chiffreUser[2] = input()
-        while not int(self.chiffreUser[2]) == tabCopy[0] and not int(self.chiffreUser[2]) == tabCopy[1]:
+        while not self.chiffreUser[2] == str(tabCopy[0]) and not self.chiffreUser[2] == str(tabCopy[1]):
             print('Insert ton chiffre')
             self.chiffreUser[2] = input()
 
