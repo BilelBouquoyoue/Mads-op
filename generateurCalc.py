@@ -1,16 +1,5 @@
 from random import *
 
-allChiffre = []
-operation = ['-', '+', '*', '/']
-operationDivBug = ['-', '+', '*']
-OperationUser = ['-', '+', '*']
-ChiffreUser = [0, 1, 2, 3]
-resultatAlgo = []
-resultatUser = []
-vie = [0]
-score = [0]
-
-
 class Partie:
 
     def __init__(self):
@@ -22,30 +11,6 @@ class Partie:
 
     def echec(self):
         self.vie = self.vie - 1
-
-
-
-class Comparateur:
-    """
-    Classe d'un calcul
-    """
-    def __init__(self, resultatAlgo, resultatUser):
-        self.resultatA = resultatAlgo
-        self.resultatU = resultatUser
-
-    def verifEgalité(self, partie):
-        if self.resultatU == self.resultatA:
-            print(f'Bravo! Vous avez trouvé la solution! Votre résultat est bien égal à {self.resultatA}.')
-            partie.reussi()
-            print(f'Vies restantes : {partie.vie}')
-            print(f'Votre score : {partie.score}')
-        else:
-            print(f'Dommage! Vous avez mal répondu. Votre dévellopement à pour réponse {self.resultatU} et non {self.resultatA}.')
-            partie.echec()
-            print(f'Vies restantes : {partie.vie}')
-            print(f'Votre score : {partie.score}')
-
-
 
 class Composants:
 
@@ -139,10 +104,11 @@ class Composants:
         print(self.operationUser)
 
 
-class Calculateur:
+class Calcul:
 
     def __init__(self, tabC):
         self.resultatA = tabC[0]
+        self.resultatU = 0
 
         # Operation entre les 2 premiers chiffres
     def calculerAlgo(self, tabC, tabO, tabOB):
@@ -187,7 +153,7 @@ class Calculateur:
             self.resultatA = self.resultatA * tabC[2]
 
         # Operation avec le 4eme chiffre
-        shuffle(operation)
+        shuffle(tabO)
         if tabO[0] == '/':
             if self.resultatA % tabC[3] == 0:
                 self.resultatA = self.resultatA / tabC[3]
@@ -256,7 +222,7 @@ class Calculateur:
             self.resultatU = self.resultatU * tabC[2]
 
         # Operation avec le 4eme chiffre
-        shuffle(operation)
+        shuffle(tabO)
         if tabO[2] == '/':
             if self.resultatU % tabC[3] == 0:
                 self.resultatU = self.resultatU / tabC[3]
@@ -275,20 +241,31 @@ class Calculateur:
             self.resultatU = self.resultatU - tabC[3]
         elif tabO[2] == '*':
             self.resultatU = self.resultatU * tabC[3]
-        resultatUser.append(self.resultatU)
         print(self.resultatU)
         print(self.resultatA)
+
+    def verifEgalite(self, partie):
+        if self.resultatU == self.resultatA:
+            print(f'Bravo! Vous avez trouvé la solution! Votre résultat est bien égal à {self.resultatA}.')
+            partie.reussi()
+            print(f'Vies restantes : {partie.vie}')
+            print(f'Votre score : {partie.score}')
+        else:
+            print(f'Dommage! Vous avez mal répondu. Votre dévellopement à pour réponse {self.resultatU} et non {self.resultatA}.')
+            partie.echec()
+            print(f'Vies restantes : {partie.vie}')
+            print(f'Votre score : {partie.score}')
+
 
 def calculComplet():
     newGame = Partie()
     while newGame.vie > 0:
         nouvComp = Composants()
-        nouvCalc = Calculateur(nouvComp.allChiffre)
+        nouvCalc = Calcul(nouvComp.allChiffre)
         nouvCalc.calculerAlgo(nouvComp.allChiffre, nouvComp.operation, nouvComp.operationDivBug)
         nouvComp.composantUtilisateur(nouvCalc.resultatA)
         nouvCalc.calculerUser(nouvComp.chiffreUser, nouvComp.operationUser, nouvComp.operationDivBug)
-        nouvComparateur = Comparateur(nouvCalc.resultatA, nouvCalc.resultatU)
-        nouvComparateur.verifEgalité(newGame)
+        nouvCalc.verifEgalite(newGame)
     print(f'Dommage! Vous ne possédez plus aucune vie. Mais bravo tout de même! Vous avez eu un score de {newGame.score}')
 
 
