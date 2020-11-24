@@ -1,5 +1,6 @@
 from random import *
 
+
 class Partie:
 
     def __init__(self):
@@ -11,6 +12,7 @@ class Partie:
 
     def echec(self):
         self.vie = self.vie - 1
+
 
 class Composants:
 
@@ -26,14 +28,14 @@ class Composants:
         self.chiffreUser = [0, 1, 2, 3]
         self.operationUser = ['-', '+', '*']
 
-    def composantUtilisateur(self, resultA):
+    def composantUtilisateur(self, result_a):
         tabAffichage = self.allChiffre
         tabCopy = tabAffichage[:]
         shuffle(tabAffichage)
         print(
             f'Quel est le dévellopement pour trouver le résultat avec ces 4 chiffres ? (Chaque chiffre = 1 seule utilisation)')
         print(f'Les chiffres : {tabAffichage[0]}, {tabAffichage[1]}, {tabAffichage[2]}, {tabAffichage[3]}')
-        print(f'Le résultat : {resultA}')
+        print(f'Le résultat : {result_a}')
         print('Insert ton 1er chiffre')
         self.chiffreUser[0] = input()
         while not self.chiffreUser[0] == str(tabAffichage[0]) and not self.chiffreUser[0] == str(tabAffichage[1]) \
@@ -50,7 +52,8 @@ class Composants:
         shuffle(tabCopy)
         print('Insert ta 1ere opération')
         self.operationUser[0] = input()
-        while not self.operationUser[0] == '/' and not self.operationUser[0] == '+' and not self.operationUser[0] == '-' and not \
+        while not self.operationUser[0] == '/' and not self.operationUser[0] == '+' and not self.operationUser[
+                                                                                                0] == '-' and not \
                 self.operationUser[0] == '*':
             print('Insert ta 1ère opération')
             self.operationUser[0] = input()
@@ -58,8 +61,8 @@ class Composants:
         print(f'Les chiffres restants: {tabCopy[0]}, {tabCopy[1]}, {tabCopy[2]}')
         print('Insert ton 2eme chiffre')
         self.chiffreUser[1] = input()
-        while not self.chiffreUser[1] == str(tabCopy[0]) and not self.chiffreUser[1] == str(tabCopy[1]) and not self.chiffreUser[1] == str(tabCopy[2]):
-
+        while not self.chiffreUser[1] == str(tabCopy[0]) and not self.chiffreUser[1] == str(tabCopy[1]) and not \
+        self.chiffreUser[1] == str(tabCopy[2]):
             print('Insert ton 2eme chiffre (et pas des lettres!)')
             self.chiffreUser[1] = input()
 
@@ -72,7 +75,8 @@ class Composants:
         shuffle(tabCopy)
         print('Insert ta 2eme opération')
         self.operationUser[1] = input()
-        while not self.operationUser[1] == '/' and not self.operationUser[1] == '+' and not self.operationUser[1] == '-' and not \
+        while not self.operationUser[1] == '/' and not self.operationUser[1] == '+' and not self.operationUser[
+                                                                                                1] == '-' and not \
                 self.operationUser[1] == '*':
             print('Insert ta 2ème opération')
             self.operationUser[1] = input()
@@ -93,7 +97,8 @@ class Composants:
         shuffle(tabCopy)
         print('Insert ta 3eme opération')
         self.operationUser[2] = input()
-        while not self.operationUser[2] == '/' and not self.operationUser[2] == '+' and not self.operationUser[2] == '-' and not \
+        while not self.operationUser[2] == '/' and not self.operationUser[2] == '+' and not self.operationUser[
+                                                                                                2] == '-' and not \
                 self.operationUser[2] == '*':
             print('Insert ta 3ème opération')
             self.operationUser[2] = input()
@@ -111,6 +116,7 @@ class Calcul:
         self.resultatU = 0
 
         # Operation entre les 2 premiers chiffres
+
     def calculerAlgo(self, tabC, tabO, tabOB):
         self.resultatU = tabC[0]
         if tabO[0] == '/':
@@ -251,7 +257,8 @@ class Calcul:
             print(f'Vies restantes : {partie.vie}')
             print(f'Votre score : {partie.score}')
         else:
-            print(f'Dommage! Vous avez mal répondu. Votre dévellopement à pour réponse {self.resultatU} et non {self.resultatA}.')
+            print(
+                f'Dommage! Vous avez mal répondu. Votre dévellopement à pour réponse {self.resultatU} et non {self.resultatA}.')
             partie.echec()
             print(f'Vies restantes : {partie.vie}')
             print(f'Votre score : {partie.score}')
@@ -266,10 +273,8 @@ def calculComplet():
         nouvComp.composantUtilisateur(nouvCalc.resultatA)
         nouvCalc.calculerUser(nouvComp.chiffreUser, nouvComp.operationUser, nouvComp.operationDivBug)
         nouvCalc.verifEgalite(newGame)
-    print(f'Dommage! Vous ne possédez plus aucune vie. Mais bravo tout de même! Vous avez eu un score de {newGame.score}')
+    print(
+        f'Dommage! Vous ne possédez plus aucune vie. Mais bravo tout de même! Vous avez eu un score de {newGame.score}')
 
 
 calculComplet()
-
-
-
