@@ -1,31 +1,27 @@
-import pygame
+from game import Game
 
 
-def commencement():
-    pygame.init()
-    pygame.display.set_caption("MAD'S Operation")
-    screen = pygame.display.set_mode((1080, 720))
+def main():
+    # charger jeu
+    game = Game()
 
-    background = pygame.image.load('assets/ecranTitre.png')
-
-    running = True
-
-    # boucle qui maintient la fenetre
-    while running:
-
-        # appliquer arriere plan
-        screen.blit(background, (0, 0))
-
-        # mettre a jour l'écran
-        pygame.display.flip()
-
-        # si le joueur ferme cette fenêtre
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-                pygame.quit()
-                print("Fermeture de la fenêtre de jeu")
+    # boucle tant que condition vraie, le jeu continue
+    while game.is_playing:
+        if game.vie == 0:
+            game.game_over()
+            answer = game.YesNoQuestion('Voulez-vous recommencer le jeu ?(yes/no)')
+            if answer == 'yes':
+                print('Le jeu redémarre')
+                game.start()
+                main()
+            elif answer == 'no':
+                print("Le jeu va s'arréter!\n"
+                      "Bonne journée à vous.")
+                game.is_playing = False
+                break
+        else:
+            game.jeu()
 
 
 if __name__ == '__main__':
-    commencement()
+    main()
