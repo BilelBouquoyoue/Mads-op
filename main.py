@@ -11,12 +11,11 @@ def main():
             game.game_over()
             answer = game.oui_non_question('Voulez-vous recommencer le jeu ?(oui/non)')
             if answer == 'oui':
-                print('Le jeu redémarre')
+                game.composants.affichage_console('démarrage')
                 game.start()
                 main()
             elif answer == 'non':
-                print("Le jeu va s'arréter!\n"
-                      "Bonne journée à vous.")
+                game.composants.affichage_console('stop')
                 game.en_jeu = False
                 break
         else:

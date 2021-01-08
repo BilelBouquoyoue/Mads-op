@@ -16,6 +16,10 @@ class Calcul:
         self.resultat_algo = tableau_chiffre[0]
         self.resultat_utilisateur = 0
 
+    def __eq__(self, other):
+        print("Calcul __eq__ est appelé")
+        return self.value == other
+
         # Operation entre les 2 premiers chiffres
 
     def calcul_algorithme(self, tableau_chiffre, tableau_operation, tableau_operation_erreur):
@@ -185,20 +189,3 @@ class Calcul:
             self.resultat_utilisateur = self.resultat_utilisateur - tableau_chiffre[3]
         elif tableau_operation[2] == '*':
             self.resultat_utilisateur = self.resultat_utilisateur * tableau_chiffre[3]
-
-    def verif_egalite(self, partie):
-        """
-        Méthode permettant de comparer les réponses et dire à l'utilisateur s'il a eu raison ou tord
-        :param partie: classe où doit s'effectuer la méthode
-        :return: la réponse de l'utilisateur et celle attendue
-        """
-        if self.resultat_utilisateur == self.resultat_algo:
-            print(f'Bravo! Vous avez trouvé la solution! Votre résultat est bien égal à {self.resultat_algo}.')
-            partie.reussi()
-            print(f'Vies restantes : {partie.vie}.\nVotre score : {partie.score}')
-        else:
-            print(
-                f'Dommage! Vous avez mal répondu. Votre dévellopement à pour réponse {self.resultat_utilisateur} et'
-                f' non {self.resultat_algo}.')
-            partie.echec()
-            print(f'Vies restantes : {partie.vie}.\nVotre score : {partie.score}')

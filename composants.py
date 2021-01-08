@@ -23,6 +23,10 @@ class Composants:
         self.chiffre_utilisateur = [0, 1, 2, 3]
         self.operation_utilisateur = ['-', '+', '*']
 
+    def __eq__(self, other):
+        print("Composants __eq__ est appelé")
+        return self.value == other
+
     @staticmethod
     def check_composant_utilisateur(resulta_algo):
         """
@@ -30,28 +34,22 @@ class Composants:
         :param resulta_algo: le résultat attendu
         :return: True or False
         """
-        if type(resulta_algo) == int:
-            return True
-        elif type(resulta_algo) == float:
-            return True
-        else:
-            return False
+        return type(resulta_algo) == int or type(resulta_algo) == float
 
-    @staticmethod
-    def melanger(tableau):
+    def melanger(self, tableau):
         """
         Methode permettant de vérifier si un tableau est vide et le mélanger dans le cas contraire
         :param tableau: le tableau des valeurs à melanger
         :return:
         """
         if not tableau:
-            print('Le tableau est vide')
+            self.affichage_console('tableau vide')
             return False
         else:
             shuffle(tableau)
             return tableau
 
-    def affichage_console(self, a):
+    def affichage_console(self, a, b=None, c=None):
         """
         Méthode permettant d'afficher en console des phrases préintroduite
         :param a: string permttant le choix du message en console
@@ -87,32 +85,91 @@ class Composants:
             print('Dommage! Vous ne possédez plus aucune vie. ')
             return True
 
+        elif a == 'affichage' and b:
+            print(f'Le résultat attendue est {b}')
+            return True
+
+        elif a == 'chiffre affiché' and b:
+            print(f'Les chiffres : {b}')
+            return True
+
+        elif a == 'tableau vide':
+            print('Le tableau est vide')
+            return True
+
+        elif a == 'chiffre 4' and b:
+            print(f'Ton 4eme chiffre utilisé est le {b}')
+            return True
+
+        elif a == 'pas dans la liste' and b:
+            print(f"{b} n'est pas dans la liste")
+            return True
+
+        elif a == 'bravo' and b:
+            print(f'Mais bravo tout de même! Vous avez eu un score de {b}')
+            return True
+
+        elif a == 'oui ou non':
+            print('Vous devez répondre par "oui" ou "non", pas autre chose')
+            return True
+
+        elif a == 'démarrage':
+            print('Le jeu redémarre')
+            return True
+
+        elif a == 'stop':
+            print("Le jeu va s'arréter!\n"
+                  "Bonne journée à vous.")
+            return True
+
+        elif a == 'echec' and b and c:
+            print(
+                f'Dommage! Vous avez mal répondu. Votre dévellopement à pour réponse {b} et'
+                f' non {c}.')
+            return True
+
+        elif a == 'vie perdu' and b:
+            print(f'Vous perdez une vie! Il vous reste {b} vies.')
+            return True
+
+        elif a == 'score gagné' and b:
+            print(f'Votre score augmente de 1. Il est donc actuellement {b}')
+            return True
+
+        elif a == 'reussi' and b:
+            print(f'Bravo! Vous avez trouvé la solution! Votre résultat est bien égal à {b}.')
+            return True
+
         else:
             return False
 
-    def choix_chiffre_operation(self, tableau, resultat):
+    def choix_chiffre_operation(self, tableau, resultat, chiffre=None, operation=None):
         """
         Méthode permettant de choisir un chiffre et une opération, en cas d'erreur on redemande à l'utilisateur
         d'introduire les données
+        :param operation: input demandant operation à l'utilisateur
+        :param chiffre: input demandant un chiffre à l'utilisateur
         :param tableau: tableau des valeurs
         :param resultat: résultat attendu
         :return:
         """
         if tableau and resultat:
-            print(f'Le résultat attendue est {resultat}')
+            self.affichage_console('affichage', resultat)
             length = len(tableau)
             chiffre_tableau = False
             for i in range(length):
-                print(f'Les chiffres : {tableau[i]}')
+                self.affichage_console('chiffre affiché', tableau[i])
             self.affichage_console('chiffre')
-            chiffre = input()
+            if chiffre is None:
+                chiffre = input()
             if int(chiffre) in tableau:
                 chiffre_tableau = True
             self.melanger(tableau)
 
             if chiffre_tableau:
                 self.affichage_console('operation')
-                operation = input()
+                if operation is None:
+                    operation = input()
                 while not operation == '/' and not operation == '+' \
                         and not operation == '-' \
                         and not operation == '*':
@@ -122,10 +179,10 @@ class Composants:
                 return chiffre, operation
             else:
                 self.affichage_console('erreur chiffre')
-                print(chiffre, "n'est pas dans la liste")
+                self.affichage_console('pas dans la liste', chiffre)
                 return self.choix_chiffre_operation(tableau, resultat)
 
-    def composant_utilisateur(self, resultat):
+    def composant_utilisateur(self, resultat, tableau=None):
         """
         Création du calcul de l'utilisateur en faisant attention à ce que seul les chiffres et opérations du caluls
         ne soit introduit
@@ -138,9 +195,13 @@ class Composants:
             tableau_copie = tableau_affichage[:]
             self.melanger(tableau_affichage)
             self.affichage_console('regle')
-            for i in range(3):
-                a = self.choix_chiffre_operation(tableau_copie, resultat)
-                self.chiffre_utilisateur[i] = a[0]
-                self.operation_utilisateur[i] = a[1]
-            print(f'Ton 4eme chiffre utilisé est le {tableau_copie[0]}')
-            self.chiffre_utilisateur[3] = tableau_copie[0]
+            if tableau is None:
+                for i in range(3):
+                    a = self.choix_chiffre_operation(tableau_copie, resultat)
+                    self.chiffre_utilisateur[i] = a[0]
+                    self.operation_utilisateur[i] = a[1]
+                self.affichage_console('chiffre 4', tableau_copie[0])
+                self.chiffre_utilisateur[3] = tableau_copie[0]
+            else:
+                for i in range(3):
+                    self.chiffre_utilisateur[i] = tableau[i]

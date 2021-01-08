@@ -21,6 +21,7 @@ class Game:
         self.vie_max = 3
         self.en_jeu = True
         self.composants = Composants()
+        self.calcul = Calcul(self.composants.chiffre_complet)
 
     def reussi(self):
         """
@@ -36,14 +37,21 @@ class Game:
         """
         self.vie = self.vie - 1
 
-    def start(self):
+    def start(self, score=None, vie_max=None):
         """
         Si l'utilisateur redémarre sa partie, le jeu est remis à zéro
         :return: le score de l'utilisateur est mis à 0
         :return: les vies de l'utilisateur sont à nouveau au maximum
         """
-        self.score = 0
-        self.vie = self.vie_max
+        if score is None:
+            self.score = 0
+        else:
+            self.score = score
+
+        if vie_max is None:
+            self.vie = self.vie_max
+        else:
+            self.vie = vie_max
 
     def game_over(self):
         """
@@ -51,30 +59,53 @@ class Game:
         :return: null
         """
         self.composants.affichage_console('game_over')
-        print(f'Mais bravo tout de même! Vous avez eu un score de {self.score}')
+        self.composants.affichage_console('bravo', self.score)
 
-    def oui_non_question(self, question):
+    def verif_egalite(self):
+        """
+        Méthode permettant de comparer les réponses et dire à l'utilisateur s'il a eu raison ou tord
+        :return: la réponse de l'utilisateur et celle attendue
+        """
+        a = self.composants
+        b = self.calcul
+        a.value = self.calcul.resultat_utilisateur
+        b.value = self.calcul.resultat_algo
+
+        if a == b:
+            a.affichage_console('reussi', self.calcul.resultat_algo)
+            self.reussi()
+            a.affichage_console('vie perdu', self.vie)
+        else:
+            a.affichage_console('echec', self.calcul.resultat_utilisateur, self.calcul.resultat_algo)
+            self.echec()
+            a.affichage_console('score_gagné', self.score)
+
+    def oui_non_question(self, question, reponse=None):
         """
         Ne permet à l'utilisateur de répondre que par oui ou non et aucun autre choix
+        :param reponse: permet de donner la réponse si déjà connu
         :param question: La  question posée à l'utilisateur
         :return: La réponse de l'utilisateur s'il répond par un des deux choix possible
         """
-        oui_non_reponse = input(question).lower()
-        if oui_non_reponse == "oui" or oui_non_reponse == "non":
-            return oui_non_reponse
+        if reponse is None:
+            oui_non_reponse = input(question).lower()
+            if oui_non_reponse == "oui" or oui_non_reponse == "non":
+                return oui_non_reponse
+            else:
+                self.composants.affichage_console('oui ou non')
+                return self.oui_non_question(question)
         else:
-            print('Vous devez répondre par "oui" ou "non", pas autre chose')
-            return self.oui_non_question(question)
+            return reponse.lower()
 
     def jeu(self):
         """
         Démarre le jeu et appelle les différentes classes
         :return: null
         """
-        nouveau_composant = Composants()
-        nouveau_calcul = Calcul(nouveau_composant.chiffre_complet)
-        nouveau_calcul.calcul_algorithme(nouveau_composant.chiffre_complet,
-                                         nouveau_composant.operation, nouveau_composant.operation_div_erreur)
-        nouveau_composant.composant_utilisateur(nouveau_calcul.resultat_algo)
-        nouveau_calcul.calcul_utilisateur(nouveau_composant.chiffre_utilisateur,nouveau_composant.operation_utilisateur, nouveau_composant.operation_div_erreur)
-        nouveau_calcul.verif_egalite(self)
+        self.calcul.calcul_algorithme(self.composants.chiffre_complet,
+                                      self.composants.operation, self.composants.operation_div_erreur)
+        self.composants.composant_utilisateur(self.calcul.resultat_algo)
+        self.calcul.calcul_utilisateur(self.composants.chiffre_utilisateur,
+                                       self.composants.operation_utilisateur,
+                                       self.composants.operation_div_erreur)
+        self.verif_egalite()
