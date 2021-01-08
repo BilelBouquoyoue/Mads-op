@@ -6,8 +6,8 @@ class Composants:
     Classe créeant tout les composants du calcul
     :type chiffre_complet: list
     :type operation: list
-    :type operationDivBug: list
-    :type operationUser: list
+    :type operation_div_erreur: list
+    :type operation_utilisateur: list
     """
 
     def __init__(self):
@@ -20,22 +20,21 @@ class Composants:
         self.chiffre_complet.append(randint(1, 10))
         self.chiffre_complet.append(randint(1, 10))
         self.operation = ['-', '+', '*', '/']
-        self.operationDivBug = ['-', '+', '*']
+        self.operation_div_erreur = ['-', '+', '*']
         shuffle(self.operation)
-        self.chiffreUser = [0, 1, 2, 3]
-        self.operationUser = ['-', '+', '*']
-        self.error = False
+        self.chiffre_utilisateur = [0, 1, 2, 3]
+        self.operation_utilisateur = ['-', '+', '*']
 
     @staticmethod
-    def checkComposantUtilisateur(result_a):
+    def check_composant_utilisateur(resulta_algo):
         """
         Méthode permettant de regarder si le résultat est bien un int ou un float
-        :param result_a: le résultat attendu
+        :param resulta_algo: le résultat attendu
         :return: True or False
         """
-        if type(result_a) == int:
+        if type(resulta_algo) == int:
             return True
-        elif type(result_a) == float:
+        elif type(resulta_algo) == float:
             return True
         else:
             return False
@@ -124,25 +123,25 @@ class Composants:
                 tableau.remove(int(chiffre))
                 return chiffre and operation
             else:
-                print(chiffre, "n'est pas dans la liste")
                 self.affichage_console('erreur chiffre')
+                print(chiffre, "n'est pas dans la liste")
                 return self.choix_chiffre_operation(tableau, resultat)
 
-    def composantUtilisateur(self, result_a):
+    def composant_utilisateur(self, resultat):
         """
         Création du calcul de l'utilisateur en faisant attention à ce que seul les chiffres et opérations du caluls
         ne soit introduit
-        :param result_a: Le résultat attendu
+        :param resultat: Le résultat attendu
         :return:
         """
-        balise = self.checkComposantUtilisateur(result_a)
+        balise = self.check_composant_utilisateur(resultat)
         if balise:
-            tabAffichage = self.chiffre_complet
-            tabCopy = tabAffichage[:]
-            self.melanger(tabAffichage)
+            tableau_affichage = self.chiffre_complet
+            tableau_copie = tableau_affichage[:]
+            self.melanger(tableau_affichage)
             self.affichage_console('regle')
             for i in range(3):
-                self.choix_chiffre_operation(tabCopy, result_a)
+                self.choix_chiffre_operation(tableau_copie, resultat)
 
-            print(f'Ton 4eme chiffre utilisé est le {tabCopy[0]}')
-            self.chiffreUser[3] = tabCopy[0]
+            print(f'Ton 4eme chiffre utilisé est le {tableau_copie[0]}')
+            self.chiffre_utilisateur[3] = tableau_copie[0]

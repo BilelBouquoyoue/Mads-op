@@ -25,17 +25,17 @@ class MyTestCase(unittest.TestCase):
         self.tab_fois = ['*']
 
     def test_game(self):
-        self.assertEqual(self.game.YesNoQuestion('Ecrire yes'), 'yes')
-        self.assertEqual(self.game.YesNoQuestion('Ecrire ce que vous voulez'), 'no')
-        self.assertTrue(self.game.is_playing)
+        self.assertEqual(self.game.yes_no_question('Ecrire yes'), 'yes')
+        self.assertEqual(self.game.yes_no_question('Ecrire ce que vous voulez'), 'no')
+        self.assertTrue(self.game.en_jeu)
         self.assertEqual(self.game.score, 0)
         self.assertTrue(self.game.jeu)
 
     def test_check_composant(self):
-        self.assertFalse(self.composants.checkComposantUtilisateur('ezqdfza'))
-        self.assertTrue(self.composants.checkComposantUtilisateur(1))
-        self.assertTrue(self.composants.checkComposantUtilisateur(1.5))
-        self.assertFalse(self.composants.checkComposantUtilisateur(''))
+        self.assertFalse(self.composants.check_composant_utilisateur('ezqdfza'))
+        self.assertTrue(self.composants.check_composant_utilisateur(1))
+        self.assertTrue(self.composants.check_composant_utilisateur(1.5))
+        self.assertFalse(self.composants.check_composant_utilisateur(''))
 
     def test_reussi(self):
         self.assertIsNone(self.game.reussi())
@@ -51,13 +51,13 @@ class MyTestCase(unittest.TestCase):
         self.assertFalse(self.composants.melanger(self.tableau_vide))
 
     def test_check_tableau_user(self):
-        self.assertTrue(self.calcul.check_tableau_user(self.tableau_plein))
-        self.assertFalse(self.calcul.check_tableau_user(self.answer_no))
+        self.assertTrue(self.calcul.check_tableau_utilisateur(self.tableau_plein))
+        self.assertFalse(self.calcul.check_tableau_utilisateur(self.answer_no))
         self.assertTrue(self.calcul.check_tableau_taille(self.tableau_plein))
         self.assertFalse(self.calcul.check_tableau_taille(self.tableau_vide))
 
     def test_verif_egalite(self):
-        self.assertIsNone(self.calcul.verifEgalite(self.game))
+        self.assertIsNone(self.calcul.verif_egalite(self.game))
 
     def test_affichage_console(self):
         self.assertTrue(self.composants.affichage_console('regle'))
@@ -73,25 +73,25 @@ class MyTestCase(unittest.TestCase):
         self.assertTrue(self.composants.choix_chiffre_operation(self.tableau_un, self.resultat))
 
     def test_calculer_algo(self):
-        self.assertIsNone(self.calcul.calculerAlgo(self.tabC, self.tabO, self.tabOB))
-        self.assertIsNone(self.calcul.calculerAlgo(self.tabC, self.tab_plus, self.tabOB), '+')
-        self.assertIsNone(self.calcul.calculerAlgo(self.tabC, self.tab_moins, self.tabOB), '-')
-        self.assertIsNone(self.calcul.calculerAlgo(self.tabC, self.tab_fois, self.tabOB), '*')
-        self.assertIsNone(self.calcul.calculerAlgo(self.tabC, self.tab_div, self.tabOB), '+')
-        self.assertIsNone(self.calcul.calculerAlgo(self.tabC, self.tab_div, self.tabOB), '-')
-        self.assertIsNone(self.calcul.calculerAlgo(self.tabC, self.tab_div, self.tabOB), '*')
+        self.assertIsNone(self.calcul.calcul_algorithme(self.tabC, self.tabO, self.tabOB))
+        self.assertIsNone(self.calcul.calcul_algorithme(self.tabC, self.tab_plus, self.tabOB), '+')
+        self.assertIsNone(self.calcul.calcul_algorithme(self.tabC, self.tab_moins, self.tabOB), '-')
+        self.assertIsNone(self.calcul.calcul_algorithme(self.tabC, self.tab_fois, self.tabOB), '*')
+        self.assertIsNone(self.calcul.calcul_algorithme(self.tabC, self.tab_div, self.tabOB), '+')
+        self.assertIsNone(self.calcul.calcul_algorithme(self.tabC, self.tab_div, self.tabOB), '-')
+        self.assertIsNone(self.calcul.calcul_algorithme(self.tabC, self.tab_div, self.tabOB), '*')
 
     def test_calculer_user(self):
-        self.assertIsNone(self.calcul.calculerUser(self.tabC, self.tabO, self.tabOB))
-        self.assertIsNone(self.calcul.calculerUser(self.tabC, self.tabO, self.tabOB), '+')
-        self.assertIsNone(self.calcul.calculerUser(self.tabC, self.tabO, self.tabOB), '-')
-        self.assertIsNone(self.calcul.calculerUser(self.tabC, self.tabO, self.tabOB), '*')
-        self.assertIsNone(self.calcul.calculerUser(self.tabC, self.tabO, self.tabOB), '+')
-        self.assertIsNone(self.calcul.calculerUser(self.tabC, self.tabO, self.tabOB), '-')
-        self.assertIsNone(self.calcul.calculerUser(self.tabC, self.tabO, self.tabOB), '*')
+        self.assertIsNone(self.calcul.calcul_utilisateur(self.tabC, self.tabO, self.tabOB))
+        self.assertIsNone(self.calcul.calcul_utilisateur(self.tabC, self.tabO, self.tabOB), '+')
+        self.assertIsNone(self.calcul.calcul_utilisateur(self.tabC, self.tabO, self.tabOB), '-')
+        self.assertIsNone(self.calcul.calcul_utilisateur(self.tabC, self.tabO, self.tabOB), '*')
+        self.assertIsNone(self.calcul.calcul_utilisateur(self.tabC, self.tabO, self.tabOB), '+')
+        self.assertIsNone(self.calcul.calcul_utilisateur(self.tabC, self.tabO, self.tabOB), '-')
+        self.assertIsNone(self.calcul.calcul_utilisateur(self.tabC, self.tabO, self.tabOB), '*')
 
     def test_composant_utilisateur(self):
-        self.assertIsNone(self.composants.composantUtilisateur(self.resultat))
+        self.assertIsNone(self.composants.composant_utilisateur(self.resultat))
 
 
 if __name__ == '__main__':

@@ -6,10 +6,10 @@ def main():
     game = Game()
 
     # boucle tant que condition vraie, le jeu continue
-    while game.is_playing:
+    while game.en_jeu:
         if game.vie == 0:
             game.game_over()
-            answer = game.YesNoQuestion('Voulez-vous recommencer le jeu ?(yes/no)')
+            answer = game.yes_no_question('Voulez-vous recommencer le jeu ?(yes/no)')
             if answer == 'yes':
                 print('Le jeu redémarre')
                 game.start()
@@ -17,7 +17,7 @@ def main():
             elif answer == 'no':
                 print("Le jeu va s'arréter!\n"
                       "Bonne journée à vous.")
-                game.is_playing = False
+                game.en_jeu = False
                 break
         else:
             game.jeu()
