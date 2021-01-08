@@ -15,10 +15,8 @@ class Composants:
         Initialisation des listes du calcul et en les méleangeant
         """
         self.chiffre_complet = []
-        self.chiffre_complet.append(randint(1, 10))
-        self.chiffre_complet.append(randint(1, 10))
-        self.chiffre_complet.append(randint(1, 10))
-        self.chiffre_complet.append(randint(1, 10))
+        for i in range(4):
+            self.chiffre_complet.append(randint(1, 10))
         self.operation = ['-', '+', '*', '/']
         self.operation_div_erreur = ['-', '+', '*']
         shuffle(self.operation)
@@ -121,7 +119,7 @@ class Composants:
                     self.affichage_console('erreur operation')
                     operation = input()
                 tableau.remove(int(chiffre))
-                return chiffre and operation
+                return chiffre, operation
             else:
                 self.affichage_console('erreur chiffre')
                 print(chiffre, "n'est pas dans la liste")
@@ -141,7 +139,8 @@ class Composants:
             self.melanger(tableau_affichage)
             self.affichage_console('regle')
             for i in range(3):
-                self.choix_chiffre_operation(tableau_copie, resultat)
-
+                a = self.choix_chiffre_operation(tableau_copie, resultat)
+                self.chiffre_utilisateur[i] = a[0]
+                self.operation_utilisateur[i] = a[1]
             print(f'Ton 4eme chiffre utilisé est le {tableau_copie[0]}')
             self.chiffre_utilisateur[3] = tableau_copie[0]

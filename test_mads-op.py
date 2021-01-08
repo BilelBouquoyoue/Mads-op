@@ -9,8 +9,8 @@ class MyTestCase(unittest.TestCase):
     def setUp(self) -> None:
         self.composants = Composants()
         self.game = Game()
-        self.answer_yes_capital = 'YES'
-        self.answer_no = 'no'
+        self.answer_oui_capital = 'OUI'
+        self.answer_non = 'non'
         self.tableau_plein = [1, 2, 3, 4]
         self.tableau_un = [1, 1, 1]
         self.tableau_vide = []
@@ -25,8 +25,8 @@ class MyTestCase(unittest.TestCase):
         self.tab_fois = ['*']
 
     def test_game(self):
-        self.assertEqual(self.game.yes_no_question('Ecrire yes'), 'yes')
-        self.assertEqual(self.game.yes_no_question('Ecrire ce que vous voulez'), 'no')
+        self.assertEqual(self.game.oui_non_question('Ecrire oui'), 'oui')
+        self.assertEqual(self.game.oui_non_question('Ecrire ce que vous voulez'), 'non')
         self.assertTrue(self.game.en_jeu)
         self.assertEqual(self.game.score, 0)
         self.assertTrue(self.game.jeu)
@@ -52,7 +52,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_check_tableau_user(self):
         self.assertTrue(self.calcul.check_tableau_utilisateur(self.tableau_plein))
-        self.assertFalse(self.calcul.check_tableau_utilisateur(self.answer_no))
+        self.assertFalse(self.calcul.check_tableau_utilisateur(self.answer_non))
         self.assertTrue(self.calcul.check_tableau_taille(self.tableau_plein))
         self.assertFalse(self.calcul.check_tableau_taille(self.tableau_vide))
 

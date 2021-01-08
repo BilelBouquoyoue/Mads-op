@@ -124,69 +124,67 @@ class Calcul:
         tableau_chiffre[2] = int(tableau_chiffre[2])
         tableau_chiffre[3] = int(tableau_chiffre[3])
         self.resultat_utilisateur = tableau_chiffre[0]
-        balise2 = self.check_tableau_taille(self.resultat_utilisateur)
-        if balise2:
-            # Operation entre les 2 premiers chiffres
-            if tableau_operation[0] == '/':
-                if self.resultat_utilisateur % tableau_chiffre[1] == 0:
-                    self.resultat_utilisateur = self.resultat_utilisateur / tableau_chiffre[1]
-                else:
-                    nouvelle_operation = tableau_operation_erreur[randint(0, 2)]
-                    if nouvelle_operation == '+':
-                        self.resultat_utilisateur = self.resultat_utilisateur + tableau_chiffre[1]
-                    elif nouvelle_operation == '-':
-                        self.resultat_utilisateur = self.resultat_utilisateur - tableau_chiffre[1]
-                    elif nouvelle_operation == '*':
-                        self.resultat_utilisateur = self.resultat_utilisateur * tableau_chiffre[1]
 
-            elif tableau_operation[0] == '+':
-                self.resultat_utilisateur = self.resultat_utilisateur + tableau_chiffre[1]
-            elif tableau_operation[0] == '-':
-                self.resultat_utilisateur = self.resultat_utilisateur - tableau_chiffre[1]
-            elif tableau_operation[0] == '*':
-                self.resultat_utilisateur = self.resultat_utilisateur * tableau_chiffre[1]
-            # operation avec le 3eme chiffre
-            if tableau_operation[1] == '/':
-                if self.resultat_utilisateur % tableau_chiffre[2] == 0:
-                    self.resultat_utilisateur = self.resultat_utilisateur / tableau_chiffre[2]
-                else:
-                    nouvelle_operation = tableau_operation_erreur[randint(0, 2)]
-                    if nouvelle_operation == '+':
-                        self.resultat_utilisateur = self.resultat_utilisateur + tableau_chiffre[2]
-                    elif nouvelle_operation == '-':
-                        self.resultat_utilisateur = self.resultat_utilisateur - tableau_chiffre[2]
-                    elif nouvelle_operation == '*':
-                        self.resultat_utilisateur = self.resultat_utilisateur * tableau_chiffre[2]
+        # Operation entre les 2 premiers chiffres
+        if tableau_operation[0] == '/':
+            if self.resultat_utilisateur % tableau_chiffre[1] == 0:
+                self.resultat_utilisateur = self.resultat_utilisateur / tableau_chiffre[1]
+            else:
+                nouvelle_operation = tableau_operation_erreur[randint(0, 2)]
+                if nouvelle_operation == '+':
+                    self.resultat_utilisateur = self.resultat_utilisateur + tableau_chiffre[1]
+                elif nouvelle_operation == '-':
+                    self.resultat_utilisateur = self.resultat_utilisateur - tableau_chiffre[1]
+                elif nouvelle_operation == '*':
+                    self.resultat_utilisateur = self.resultat_utilisateur * tableau_chiffre[1]
 
-            elif tableau_operation[1] == '+':
-                self.resultat_utilisateur = self.resultat_utilisateur + tableau_chiffre[2]
-            elif tableau_operation[1] == '-':
-                self.resultat_utilisateur = self.resultat_utilisateur - tableau_chiffre[2]
-            elif tableau_operation[1] == '*':
-                self.resultat_utilisateur = self.resultat_utilisateur * tableau_chiffre[2]
+        elif tableau_operation[0] == '+':
+            self.resultat_utilisateur = self.resultat_utilisateur + tableau_chiffre[1]
+        elif tableau_operation[0] == '-':
+            self.resultat_utilisateur = self.resultat_utilisateur - tableau_chiffre[1]
+        elif tableau_operation[0] == '*':
+            self.resultat_utilisateur = self.resultat_utilisateur * tableau_chiffre[1]
 
-            # Operation avec le 4eme chiffre
-            shuffle(tableau_operation)
-            if tableau_operation[2] == '/':
-                if self.resultat_utilisateur % tableau_chiffre[3] == 0:
-                    self.resultat_utilisateur = self.resultat_utilisateur / tableau_chiffre[3]
-                else:
-                    nouvelle_operation = tableau_operation_erreur[randint(0, 2)]
-                    if nouvelle_operation == '+':
-                        self.resultat_utilisateur = self.resultat_utilisateur + tableau_chiffre[3]
-                    elif nouvelle_operation == '-':
-                        self.resultat_utilisateur = self.resultat_utilisateur - tableau_chiffre[3]
-                    elif nouvelle_operation == '*':
-                        self.resultat_utilisateur = self.resultat_utilisateur * tableau_chiffre[3]
+        # operation avec le 3eme chiffre
+        if tableau_operation[1] == '/':
+            if self.resultat_utilisateur % tableau_chiffre[2] == 0:
+                self.resultat_utilisateur = self.resultat_utilisateur / tableau_chiffre[2]
+            else:
+                nouvelle_operation = tableau_operation_erreur[randint(0, 2)]
+                if nouvelle_operation == '+':
+                    self.resultat_utilisateur = self.resultat_utilisateur + tableau_chiffre[2]
+                elif nouvelle_operation == '-':
+                    self.resultat_utilisateur = self.resultat_utilisateur - tableau_chiffre[2]
+                elif nouvelle_operation == '*':
+                    self.resultat_utilisateur = self.resultat_utilisateur * tableau_chiffre[2]
 
-            elif tableau_operation[2] == '+':
-                self.resultat_utilisateur = self.resultat_utilisateur + tableau_chiffre[3]
-            elif tableau_operation[2] == '-':
-                self.resultat_utilisateur = self.resultat_utilisateur - tableau_chiffre[3]
-            elif tableau_operation[2] == '*':
-                self.resultat_utilisateur = self.resultat_utilisateur * tableau_chiffre[3]
-        else:
-            False
+        elif tableau_operation[1] == '+':
+            self.resultat_utilisateur = self.resultat_utilisateur + tableau_chiffre[2]
+        elif tableau_operation[1] == '-':
+            self.resultat_utilisateur = self.resultat_utilisateur - tableau_chiffre[2]
+        elif tableau_operation[1] == '*':
+            self.resultat_utilisateur = self.resultat_utilisateur * tableau_chiffre[2]
+
+        # Operation avec le 4eme chiffre
+        shuffle(tableau_operation)
+        if tableau_operation[2] == '/':
+            if self.resultat_utilisateur % tableau_chiffre[3] == 0:
+                self.resultat_utilisateur = self.resultat_utilisateur / tableau_chiffre[3]
+            else:
+                nouvelle_operation = tableau_operation_erreur[randint(0, 2)]
+                if nouvelle_operation == '+':
+                    self.resultat_utilisateur = self.resultat_utilisateur + tableau_chiffre[3]
+                elif nouvelle_operation == '-':
+                    self.resultat_utilisateur = self.resultat_utilisateur - tableau_chiffre[3]
+                elif nouvelle_operation == '*':
+                    self.resultat_utilisateur = self.resultat_utilisateur * tableau_chiffre[3]
+
+        elif tableau_operation[2] == '+':
+            self.resultat_utilisateur = self.resultat_utilisateur + tableau_chiffre[3]
+        elif tableau_operation[2] == '-':
+            self.resultat_utilisateur = self.resultat_utilisateur - tableau_chiffre[3]
+        elif tableau_operation[2] == '*':
+            self.resultat_utilisateur = self.resultat_utilisateur * tableau_chiffre[3]
 
     def verif_egalite(self, partie):
         """
