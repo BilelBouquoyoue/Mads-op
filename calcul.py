@@ -20,7 +20,7 @@ class Calcul:
 
     def calculerAlgo(self, tabC, tabO, tabOB):
         """
-        Méthode permettant de faire les différents calculs
+        Méthode permettant de faire le calcul du jeu
         :param tabC: Tableau contenant les chiffres du calcul
         :param tabO: Tableau contenant les opérations du calcul
         :param tabOB: Tableau contenant les 4 opérations
@@ -89,6 +89,11 @@ class Calcul:
 
     @staticmethod
     def check_tableau_user(tableau):
+        """
+        Méthode vérifiant si la valeur entrée est une liste
+        :param tableau: tableau de valeur
+        :return:
+        """
         if type(tableau) == list:
             return True
         else:
@@ -96,13 +101,24 @@ class Calcul:
 
     @staticmethod
     def check_tableau_taille(tableau):
+        """
+        Méthode vérifiant si le tableau entrée est vide ou non
+        :param tableau: de valeur
+        :return:
+        """
         if not tableau:
             return False
         else:
             return True
 
     def calculerUser(self, tabC, tabO, tabOB):
-
+        """
+        Méthode permettant de faire le calcul de l'utilisateur
+        :param tabC: tableau de valeur
+        :param tabO: tableau d'opération
+        :param tabOB: tableau d'opération sans division
+        :return:
+        """
         tabC[0] = int(tabC[0])
         tabC[1] = int(tabC[1])
         tabC[2] = int(tabC[2])
@@ -188,4 +204,3 @@ class Calcul:
                 f' non {self.resultatA}.')
             partie.echec()
             print(f'Vies restantes : {partie.vie}.\nVotre score : {partie.score}')
-

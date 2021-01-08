@@ -28,6 +28,11 @@ class Composants:
 
     @staticmethod
     def checkComposantUtilisateur(result_a):
+        """
+        Méthode permettant de regarder si le résultat est bien un int ou un float
+        :param result_a: le résultat attendu
+        :return: True or False
+        """
         if type(result_a) == int:
             return True
         elif type(result_a) == float:
@@ -37,6 +42,11 @@ class Composants:
 
     @staticmethod
     def melanger(tableau):
+        """
+        Methode permettant de vérifier si un tableau est vide et le mélanger dans le cas contraire
+        :param tableau: le tableau des valeurs à melanger
+        :return:
+        """
         if not tableau:
             print('Le tableau est vide')
             return False
@@ -45,6 +55,11 @@ class Composants:
             return tableau
 
     def affichage_console(self, a):
+        """
+        Méthode permettant d'afficher en console des phrases préintroduite
+        :param a: string permttant le choix du message en console
+        :return:
+        """
         if a == 'regle':
             print(
                 f'Quel est le dévellopement pour trouver le résultat avec ces 4 chiffres ?'
@@ -79,6 +94,13 @@ class Composants:
             return False
 
     def choix_chiffre_operation(self, tableau, resultat):
+        """
+        Méthode permettant de choisir un chiffre et une opération, en cas d'erreur on redemande à l'utilisateur
+        d'introduire les données
+        :param tableau: tableau des valeurs
+        :param resultat: résultat attendu
+        :return:
+        """
         if tableau and resultat:
             print(f'Le résultat attendue est {resultat}')
             length = len(tableau)
